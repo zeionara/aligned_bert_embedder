@@ -1,5 +1,30 @@
 # get_aligned_BERT_emb
 Get the aligned BERT embedding for sequence labeling tasks 
+## Installing dependencies
+```shell script
+conda env create -f environment.yml
+```
+## Example of usage from cmd (not recommended):
+```shell script
+python -m aligned_bert_embedder embed aligned_bert_embedder/configs/snip.yml aligned_bert_embedder/texts/triple.txt
+```
+## Example of usage from code (preferable)
+```shell script
+from aligned_bert_embedder import AlignedBertEmbedder
+
+embeddings = AlignedBertEmbedder(config).embed(
+  (
+    (
+      'First', `sentence`, `or`, `other`, `context`, `chunk`
+    ),
+    (
+      `Second`, `sentence`
+    )
+  )
+)
+```
+
+**The following is the content of the original `README.md` file from the developer repo.**
 
 ## Why this repo?
 
