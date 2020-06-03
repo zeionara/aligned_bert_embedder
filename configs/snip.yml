@@ -3,7 +3,7 @@ paths: # Absolute paths will be constructed at runtime
   config: config.json
   vocabulary: vocab.txt
   checkpoint: model.ckpt-700000
-size: 576
+size: 144
 is-lower-cased: False
 max-sequence-length: 256
 layer-indices:

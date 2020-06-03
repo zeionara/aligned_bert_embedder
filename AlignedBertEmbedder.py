@@ -18,17 +18,14 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import codecs
 import collections
-import os
 import re
-import sys
 from typing import Tuple
 
 import tensorflow as tf
 
-import modeling
-import tokenization
+from .utils import modeling
+from .utils import tokenization
 # flags = tf.flags
 #
 # FLAGS = flags.FLAGS
@@ -78,8 +75,7 @@ import tokenization
 #     "If True, tf.one_hot will be used for embedding lookups, otherwise "
 #     "tf.nn.embedding_lookup will be used. On TPUs, this should be True "
 #     "since it is much faster.")
-from get_aligned_bert_emb import align_features
-from utils import read_yaml, read_tokens
+from utils.alignment import align_features
 
 
 class InputExample(object):
@@ -451,18 +447,3 @@ class AlignedBertEmbedder():
                 InputExample(unique_id=unique_id, text_a=text_a, text_b=text_b))
             unique_id += 1
         return examples
-
-
-if __name__ == "__main__":
-    # Some required setup which may actually happen far away from the module
-    config = read_yaml(sys.argv[1])
-
-    config['paths']['config'] = os.path.join(config['paths']['root'], config['paths']['config'])
-    config['paths']['vocabulary'] = os.path.join(config['paths']['root'], config['paths']['vocabulary'])
-    config['paths']['checkpoint'] = os.path.join(config['paths']['root'], config['paths']['checkpoint'])
-
-    tokens = tuple(read_tokens(sys.argv[2]))
-
-    # Embeddings generation from text representations of tokens grouped into sentences
-    embeddings = tuple(AlignedBertEmbedder(config).embed(tokens))
-    pass
