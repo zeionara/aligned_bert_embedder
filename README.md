@@ -1,5 +1,9 @@
 # get_aligned_BERT_emb
 Get the aligned BERT embedding for sequence labeling tasks 
+## Installing as a dependency
+```shell script
+pip install aligned-bert-embedder
+```
 ## Installing dependencies
 ```shell script
 conda env create -f environment.yml
