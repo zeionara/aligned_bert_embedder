@@ -5,8 +5,8 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='aligned_bert_embedder',
-    version='0.8',
-    scripts=['aligned_bert_embedder'],
+    version='0.81',
+    scripts=['aligned_bert_embedder_'],
     authors=["Adaxry", "Zeio Nara"],
     author_email="zeionara@gmail.com",
     description="Module for generating aligned contextualized bert embeddings using different strategies",
