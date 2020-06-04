@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='aligned_bert_embedder',
-    version='0.7',
+    version='0.8',
     scripts=['aligned_bert_embedder'],
     authors=["Adaxry", "Zeio Nara"],
     author_email="zeionara@gmail.com",

@@ -20,13 +20,14 @@ from __future__ import print_function
 
 import collections
 import re
+from logging import Logger
 from typing import Tuple
 
 import tensorflow as tf
 
-from .utils.alignment import align_features
 from .utils import modeling
 from .utils import tokenization
+from .utils.alignment import align_features
 
 
 class InputExample(object):
@@ -301,15 +302,18 @@ def _truncate_seq_pair(tokens_a, tokens_b, max_length):
             tokens_b.pop()
 
 
-class AlignedBertEmbedder():
-    def __init__(self, config):
+class AlignedBertEmbedder:
+    key = 'aligned-bert'  # to be able to have multiple embedders in a system and be capable of choosing specific implementation by key at runtime
+
+    def __init__(self, config, logger: Logger = None):
         self.config = config
+        self.logger = logger
 
     def embed(self, tokens: Tuple[Tuple[str]]):
         return align_features(self._generate_features(tokens), self.config['alignment-strategy'])
 
     def _generate_features(self, tokens: Tuple[Tuple[str]] = ()):
-        tf.logging.set_verbosity(tf.logging.INFO)
+        # tf.logging.set_verbosity(tf.logging.INFO)
 
         bert_config = modeling.BertConfig.from_json_file(self.config['paths']['config'])
 
